@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorGraph - Recipe Navigator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>FlavorGraph</h1>
+        <p>Enter the ingredients you have (comma separated):</p>
+
+        <form method="POST">
+            <input type="text" name="ingredients" placeholder="e.g. chicken, rice, tomato" required>
+            <button type="submit">Find Recipes</button>
+        </form>
+{% if recipes %}
+    <h2>Recipe Suggestions:</h2>
+    <div class="recipe-grid">
+
+        <!-- Chicken Biryani -->
+        <div class="recipe-card">
+            <img src="static/images/biryani.jpg" alt="Biriyani">
+            <h3>Chicken Biryani</h3>
+            {% if recipes[0].can_make %}
+                <p style="color: lightgreen;">You can make this!</p>
+            {% else %}
+                <p style="color: orange;">Missing Ingredients: {{ recipes[0].missing | join(', ') }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Butter Chicken -->
+        <div class="recipe-card">
+            <img src="static/images/Butter Chicken.jpg" alt="Butter Chicken">
+            <h3>Butter Chicken</h3>
+            {% if recipes[1].can_make %}
+                <p style="color: lightgreen;">You can make this!</p>
+            {% else %}
+                <p style="color: orange;">Missing Ingredients: {{ recipes[1].missing | join(', ') }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Egg Curry -->
+        <div class="recipe-card">
+            <img src="static/images/Egg Curry.jpg" alt="Egg Curry">
+            <h3>Egg Curry</h3>
+            {% if recipes[2].can_make %}
+                <p style="color: lightgreen;">You can make this!</p>
+            {% else %}
+                <p style="color: orange;">Missing Ingredients: {{ recipes[2].missing | join(', ') }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Chicken Shawarma -->
+        <div class="recipe-card">
+           <img src="static/images/Chicken Shawarma.jpg" alt="Chicken Shawarma">
+            <h3>Chicken Shawarma</h3>
+            {% if recipes[3].can_make %}
+                <p style="color: lightgreen;">You can make this!</p>
+            {% else %}
+                <p style="color: orange;">Missing Ingredients: {{ recipes[3].missing | join(', ') }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Grilled Fish -->
+        <div class="recipe-card">
+            <img src="static/images/Grilled Fish.jpg" alt="Grilled Fish">
+            <h3>Grilled Fish</h3>
+            {% if recipes[4].can_make %}
+                <p style="color: lightgreen;">You can make this!</p>
+            {% else %}
+                <p style="color: orange;">Missing Ingredients: {{ recipes[4].missing | join(', ') }}</p>
+            {% endif %}
+        </div>
+
+    </div>
+{% endif %}
+
+
+    </div>
+</body>
+</html>
